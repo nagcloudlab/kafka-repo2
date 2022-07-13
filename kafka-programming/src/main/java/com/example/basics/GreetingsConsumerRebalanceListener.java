@@ -1,4 +1,4 @@
-package com.example;
+package com.example.basics;
 
 import org.apache.kafka.clients.consumer.ConsumerRebalanceListener;
 import org.apache.kafka.clients.consumer.KafkaConsumer;

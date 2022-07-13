@@ -1,4 +1,4 @@
-package com.example;
+package com.example.basics;
 
 import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.clients.consumer.Consumer;
