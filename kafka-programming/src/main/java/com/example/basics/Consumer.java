@@ -10,7 +10,7 @@ import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
 
-public class ConsumerEx {
+public class Consumer {
 
     private static final Logger log = LoggerFactory.getLogger("kp");
 
@@ -29,22 +29,32 @@ public class ConsumerEx {
         properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, groupId);
         properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+
+        properties.setProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG,"false");
+
 //        properties.setProperty(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG, CooperativeStickyAssignor.class.getName());
 
         // create consumer
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties);
+        GreetingsConsumerRebalanceListener listener=new GreetingsConsumerRebalanceListener(consumer);
+
+
         try {
             // subscribe consumer to our topic(s)
-            consumer.subscribe(Arrays.asList(topic));
+            consumer.subscribe(Arrays.asList(topic),listener);
 
             // poll for new data
             while (true) {
+
                 ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
                 for (ConsumerRecord<String, String> record : records) {
                     log.info("Key: " + record.key() + ", Value: " + record.value());
                     log.info("Partition: " + record.partition() + ", Offset:" + record.offset());
+                    listener.addOffsetToTrack(record.topic(), record.partition(), record.offset());
                 }
+                consumer.commitAsync();
             }
+
 
         }catch (WakeupException e) {
             log.info("Wake up exception!");
@@ -52,7 +62,11 @@ public class ConsumerEx {
         } catch (Exception e) {
             log.error("Unexpected exception", e);
         } finally {
-            consumer.close(); // this will also commit the offsets if need be.
+            try {
+                consumer.commitSync(listener.getCurrentOffsets()); // we must commit the offsets synchronously here
+            }finally {
+                consumer.close(); // this will also commit the offsets if need be.
+            }
             log.info("The consumer is now gracefully closed.");
         }
 

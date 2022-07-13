@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 
-public class ProducerEx {
+public class Producer {
 
     private static final Logger log = LoggerFactory.getLogger("kp");
 
@@ -30,10 +30,10 @@ public class ProducerEx {
         for (int i = 0; i < 10; i++) {
 
             String topic = "greetings";
-            String key = "id_" + Integer.toString(i);
+            String key = "id_" + Integer.toString(0);
             String message = "hello world - " + Integer.toString(i);
 
-            ProducerRecord<String, String> producerRecord = new ProducerRecord<>(topic, key, message);
+            ProducerRecord<String, String> producerRecord = new ProducerRecord<>(topic,key, message);
             // send the data - asynchronous
             producer.send(producerRecord, ((recordMetadata, e) -> {
                 if (e == null) {
