@@ -1,4 +1,4 @@
-package com.example;
+package com.example.advanced;
 
 import com.google.gson.JsonParser;
 import org.apache.http.HttpHost;
@@ -15,7 +15,6 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import org.opensearch.action.bulk.BulkRequest;
 import org.opensearch.action.bulk.BulkResponse;
 import org.opensearch.action.index.IndexRequest;
-import org.opensearch.action.index.IndexResponse;
 import org.opensearch.client.RequestOptions;
 import org.opensearch.client.RestClient;
 import org.opensearch.client.RestHighLevelClient;
@@ -75,6 +74,15 @@ public class OpenSearchConsumer {
         return restHighLevelClient;
     }
 
+    private static String extractId(String json) {
+        // gson library
+        return JsonParser.parseString(json)
+                .getAsJsonObject()
+                .get("meta")
+                .getAsJsonObject()
+                .get("id")
+                .getAsString();
+    }
 
     public static void main(String[] args) throws IOException {
 
@@ -102,10 +110,40 @@ public class OpenSearchConsumer {
                 ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(3000));
                 int recordCount = records.count();
                 log.info("Received " + recordCount + " record(s)");
+
+                BulkRequest bulkRequest = new BulkRequest();
                 for (ConsumerRecord<String, String> record : records) {
-                    IndexRequest indexRequest = new IndexRequest("wikimedia").source(record.value(), XContentType.JSON);
-                    IndexResponse response = openSearchClient.index(indexRequest, RequestOptions.DEFAULT);
-                    log.info(response.getId());
+
+                    // option-1
+                    // define an ID using Kafka Record coordinates
+                    //String id = record.topic() + "_" + record.partition() + "_" + record.offset();
+                    // option-2
+                    // we extract the ID from the JSON value
+                    String id = extractId(record.value());
+                    try {
+                        IndexRequest indexRequest = new IndexRequest("wikimedia").source(record.value(), XContentType.JSON).id(id);
+//                    IndexResponse response = openSearchClient.index(indexRequest, RequestOptions.DEFAULT);
+//                    log.info(response.getId());
+                        bulkRequest.add(indexRequest);
+                    } catch (Exception e) {
+                    }
+
+
+                }
+                if (bulkRequest.numberOfActions() > 0) {
+                    BulkResponse bulkResponse = openSearchClient.bulk(bulkRequest, RequestOptions.DEFAULT);
+                    log.info("Inserted " + bulkResponse.getItems().length + " record(s).");
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+//                    if (1 == 1)
+//                        throw new OutOfMemoryError("oops");
+
+                    consumer.commitSync();
+                    log.info("Offsets have been committed!");
                 }
             }
         }

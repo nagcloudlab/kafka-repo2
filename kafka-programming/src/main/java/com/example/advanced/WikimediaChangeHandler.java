@@ -1,4 +1,4 @@
-package com.example;
+package com.example.advanced;
 
 import com.launchdarkly.eventsource.EventHandler;
 import com.launchdarkly.eventsource.MessageEvent;
