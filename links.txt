@@ -7,3 +7,5 @@ https://docs.google.com/presentation/d/1AF7LFu0oNTvTPJ_RghdDTKjxA9HeSgisJFKLXcE2
 
 Notion Pages
 https://developing-furniture-976.notion.site/Kafka-5226b2edf17b433cb008e15482e08454
+https://developing-furniture-976.notion.site/Kafka-Consumer-7e290b3934ff4a388c337782e9c48609
+
