@@ -1,0 +1,9 @@
+
+spring:
+  cloud:
+    stream:
+      bindings:
+        message-in-0:
+          destination: messages-topic
+        message-out-0:
+          destination: upper-messages-topic

@@ -1,6 +1,5 @@
-package com.baeldung.monitoring.simulation;
+package com.example.monitoring.simulation;
 
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 

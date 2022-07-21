@@ -1,7 +1,6 @@
-package com.baeldung.kafka.embedded;
+package com.example.kafka.embedded;
 
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

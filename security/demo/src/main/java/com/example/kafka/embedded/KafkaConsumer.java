@@ -1,4 +1,4 @@
-package com.baeldung.kafka.embedded;
+package com.example.kafka.embedded;
 
 import java.util.concurrent.CountDownLatch;
 

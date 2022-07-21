@@ -1,0 +1,33 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+#        notification-input-channel:
+#          destination: pos
+        notification-output-channel:
+          destination: loyalty-topic
+#        hadoop-input-channel:
+#          destination: pos
+        pos-input-channel:
+          destination: pos
+        hadoop-output-channel:
+          destination: hadoop-sink-topic
+      kafka:
+        streams:
+          binder:
+            brokers:  localhost:9092
+            configuration:
+              schema.registry.url: http://localhost:8081
+          bindings:
+            notification-input-channel:
+              consumer:
+                valueSerde: org.springframework.kafka.support.serializer.JsonSerde
+            notification-output-channel:
+              producer:
+                valueSerde: org.springframework.kafka.support.serializer.JsonSerde
+            hadoop-input-channel:
+              consumer:
+                valueSerde: org.springframework.kafka.support.serializer.JsonSerde
+            hadoop-output-channel:
+              producer:
+                valueSerde: org.springframework.kafka.support.serializer.JsonSerde

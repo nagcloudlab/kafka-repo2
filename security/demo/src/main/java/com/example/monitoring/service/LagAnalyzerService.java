@@ -1,6 +1,6 @@
-package com.baeldung.monitoring.service;
+package com.example.monitoring.service;
 
-import com.baeldung.monitoring.util.MonitoringUtil;
+import com.example.monitoring.util.MonitoringUtil;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.ListConsumerGroupOffsetsResult;

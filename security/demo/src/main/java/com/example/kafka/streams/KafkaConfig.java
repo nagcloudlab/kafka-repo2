@@ -1,4 +1,4 @@
-package com.baeldung.kafka.streams;
+package com.example.kafka.streams;
 
 import static org.apache.kafka.streams.StreamsConfig.APPLICATION_ID_CONFIG;
 import static org.apache.kafka.streams.StreamsConfig.BOOTSTRAP_SERVERS_CONFIG;

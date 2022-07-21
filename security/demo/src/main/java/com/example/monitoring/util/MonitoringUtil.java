@@ -1,4 +1,4 @@
-package com.baeldung.monitoring.util;
+package com.example.monitoring.util;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

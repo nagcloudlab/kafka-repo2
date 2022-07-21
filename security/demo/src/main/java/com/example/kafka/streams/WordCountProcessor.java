@@ -1,4 +1,4 @@
-package com.baeldung.kafka.streams;
+package com.example.kafka.streams;
 
 import java.util.Arrays;
 

@@ -1,7 +1,6 @@
-package com.baeldung.kafka.testcontainers;
+package com.example.kafka.testcontainers;
 
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -34,9 +33,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.testcontainers.containers.KafkaContainer;
 import org.testcontainers.utility.DockerImageName;
 
-import com.baeldung.kafka.embedded.KafkaConsumer;
-import com.baeldung.kafka.embedded.KafkaProducer;
-import com.baeldung.kafka.embedded.KafkaProducerConsumerApplication;
+import com.example.kafka.embedded.KafkaConsumer;
+import com.example.kafka.embedded.KafkaProducer;
+import com.example.kafka.embedded.KafkaProducerConsumerApplication;
 
 /**
  * This test class uses Testcontainers to instantiate and manage an external Apache
@@ -46,7 +45,7 @@ import com.baeldung.kafka.embedded.KafkaProducerConsumerApplication;
  *
  */
 @RunWith(SpringRunner.class)
-@Import(com.baeldung.kafka.testcontainers.KafkaTestContainersLiveTest.KafkaTestContainersConfiguration.class)
+@Import(com.example.kafka.testcontainers.KafkaTestContainersLiveTest.KafkaTestContainersConfiguration.class)
 @SpringBootTest(classes = KafkaProducerConsumerApplication.class)
 @DirtiesContext
 public class KafkaTestContainersLiveTest {

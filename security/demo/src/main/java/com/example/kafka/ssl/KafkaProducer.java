@@ -1,4 +1,4 @@
-package com.baeldung.kafka.ssl;
+package com.example.kafka.ssl;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

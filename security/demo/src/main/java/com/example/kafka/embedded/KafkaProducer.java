@@ -1,4 +1,4 @@
-package com.baeldung.kafka.embedded;
+package com.example.kafka.embedded;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

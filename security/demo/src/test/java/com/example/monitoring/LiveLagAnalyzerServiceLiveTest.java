@@ -1,6 +1,6 @@
-package com.baeldung.monitoring;
+package com.example.monitoring;
 
-import com.baeldung.monitoring.service.LagAnalyzerService;
+import com.example.monitoring.service.LagAnalyzerService;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;

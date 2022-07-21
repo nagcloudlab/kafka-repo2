@@ -1,4 +1,4 @@
-package com.baeldung.monitoring.simulation;
+package com.example.monitoring.simulation;
 
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;

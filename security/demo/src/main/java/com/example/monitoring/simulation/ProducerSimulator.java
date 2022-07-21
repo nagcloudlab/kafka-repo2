@@ -1,9 +1,8 @@
-package com.baeldung.monitoring.simulation;
+package com.example.monitoring.simulation;
 
 import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -12,8 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
-import static com.baeldung.monitoring.util.MonitoringUtil.endTime;
-import static com.baeldung.monitoring.util.MonitoringUtil.time;
+import static com.example.monitoring.util.MonitoringUtil.endTime;
+import static com.example.monitoring.util.MonitoringUtil.time;
 
 @Service
 public class ProducerSimulator {

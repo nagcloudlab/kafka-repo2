@@ -1,4 +1,4 @@
-package com.baeldung.spring.kafka;
+package com.example.spring.kafka;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

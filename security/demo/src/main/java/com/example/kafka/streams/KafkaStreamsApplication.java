@@ -1,4 +1,4 @@
-package com.baeldung.kafka.streams;
+package com.example.kafka.streams;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

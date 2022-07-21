@@ -1,4 +1,4 @@
-package com.baeldung.monitoring.service;
+package com.example.monitoring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,4 +1,4 @@
-package com.baeldung.kafka.ssl;
+package com.example.kafka.ssl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ import java.io.File;
 import java.time.Duration;
 import java.util.UUID;
 
-import static com.baeldung.kafka.ssl.KafkaConsumer.TOPIC;
+import static com.example.kafka.ssl.KafkaConsumer.TOPIC;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
 
